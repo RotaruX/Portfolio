@@ -44,13 +44,13 @@
                 <div class="footer-col">
                     <h4 class="footer-title">Conectar</h4>
                     <div class="footer-social">
-                        <a href="https://github.com/carlosgarcia" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <a href="https://github.com/RotaruX/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/in/carlosgarcia" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/alexandru-adrian-rotaru-alergus/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="mailto:carlos.garcia@email.com" class="social-link" aria-label="Email">
+                        <a href="mailto:rotarualex1612@gmail.com" class="social-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
