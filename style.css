@@ -145,22 +145,87 @@ img {
     justify-content: space-between;
 }
 
-.nav-logo {
-    font-family: var(--font-mono);
-    font-size: 1.3rem;
-    font-weight: 700;
+/* Dynamic Logo */
+.dynamic-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 55px;
+    padding: 0 12px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(52, 211, 153, 0.05));
+    border: 1px solid var(--accent-primary);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-glow-subtle);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+.logo-letter {
+    font-family: var(--font-primary);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    z-index: 1;
+    letter-spacing: 0.5px;
+}
+
+.logo-letter:first-child {
     color: var(--accent-primary);
-    letter-spacing: -0.5px;
-    transition: text-shadow var(--transition-normal);
 }
 
-.nav-logo:hover {
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+.logo-letter:nth-child(2) {
+    color: var(--text-primary);
 }
 
-.logo-bracket {
-    color: var(--accent-tertiary);
-    font-weight: 400;
+.logo-letter:nth-child(3) {
+    color: var(--accent-secondary);
+}
+
+.logo-letter:last-child {
+    color: var(--text-primary);
+}
+
+.logo-text {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+    transition: all var(--transition-normal);
+}
+
+.dynamic-logo:hover .logo-icon {
+    transform: translateY(-2px) rotate(5deg) scale(1.05);
+    box-shadow: var(--shadow-glow);
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(52, 211, 153, 0.1));
+}
+
+.dynamic-logo:hover .logo-text {
+    color: var(--accent-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.footer-logo {
+    margin-bottom: 16px;
 }
 
 .nav-links {

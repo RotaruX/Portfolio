@@ -58,9 +58,9 @@ $total_tech = count($skills);
 // Datos por defecto si no hay perfil
 $name = $profile['full_name'] ?? 'Alexandru Adrian Rotaru Alergus';
 $title = $profile['title'] ?? 'Desarrollador Web (Graduado en DAW)';
-$bio = $profile['bio'] ?? 'Recién graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Soy un desarrollador apasionado por crear experiencias digitales excepcionales.';
-$email = $profile['email'] ?? 'alexandru.rotaru@email.com';
-$location = $profile['location'] ?? 'España';
+$bio = $profile['bio'] ?? 'Recién graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Soy un desarrollador apasionado por crear experiencias digitales excepcionales. Actualmente estoy estudiando más tecnologías y frameworks, y estoy dispuesto a aprender cualquier tipo de lenguaje.';
+$email = $profile['email'] ?? 'rotarualex1612@gmail.com';
+$location = $profile['location'] ?? 'Elche, Alicante';
 $github = $profile['github_url'] ?? '#';
 $linkedin = $profile['linkedin_url'] ?? '#';
 

@@ -17,9 +17,14 @@
             <div class="footer-grid">
                 <!-- Columna 1: Acerca de -->
                 <div class="footer-col">
-                    <h4 class="footer-title">
-                        <span class="logo-bracket">{</span> DevPortfolio <span class="logo-bracket">}</span>
-                    </h4>
+                    <a href="index.php" class="nav-logo dynamic-logo footer-logo">
+                        <div class="logo-icon">
+                            <span class="logo-letter">A</span>
+                            <span class="logo-letter">A</span>
+                            <span class="logo-letter">R</span>
+                            <span class="logo-letter">A</span>
+                        </div>
+                    </a>
                     <p class="footer-about-text">
                         Desarrollador web y de aplicaciones apasionado por crear soluciones digitales innovadoras y experiencias de usuario excepcionales.
                     </p>

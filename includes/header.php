@@ -41,8 +41,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <header class="main-header">
         <nav class="nav-container">
             <!-- Logo / Marca -->
-            <a href="index.php" class="nav-logo">
-                <span class="logo-bracket">{</span> DevPortfolio <span class="logo-bracket">}</span>
+            <a href="index.php" class="nav-logo dynamic-logo">
+                <div class="logo-icon">
+                    <span class="logo-letter">A</span>
+                    <span class="logo-letter">A</span>
+                    <span class="logo-letter">R</span>
+                    <span class="logo-letter">A</span>
+                </div>
+                <span class="logo-text">Alexandru</span>
             </a>
             
             <!-- Enlaces de navegación -->
