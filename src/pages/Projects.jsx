@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
+import { useAuth } from '../hooks/useAuth';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 
 export const Projects = () => {
   const { data, loading, error } = useFetch('api/projects.php');
   const [filter, setFilter] = useState('all');
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace />;
+  }
 
   if (loading) {
     return (

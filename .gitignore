@@ -1,18 +1,19 @@
+# Dependencias de Node.js (No deben subirse porque pesan mucho, se instalan con npm install)
+node_modules/
+
+# Archivos de entorno y secretos
+.env
+.env.local
+.env.*.local
+
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Archivos de Editores e IDEs (VSCode, IntelliJ, etc)
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +23,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# NOTA IMPORTANTE: 
+# NO ignoramos la carpeta "dist/" porque tu servidor PHP la necesita para mostrar la web en producción.
+# NO ignoramos la base de datos "database/portfolio.sql" porque es vital para tus backups.
+# NO ignoramos "assets/img/" para que tus imágenes se guarden y suban al servidor correctamente.
