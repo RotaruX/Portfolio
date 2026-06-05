@@ -98,7 +98,7 @@ INSERT INTO `profile` (`full_name`, `title`, `bio`, `email`, `phone`, `location`
 (
   'Alexandru Adrian Rotaru Alergus',
   'Desarrollador Web (Graduado en DAW)',
-  'Recién graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Soy un desarrollador apasionado por crear experiencias digitales excepcionales. Actualmente estoy estudiando más tecnologías y frameworks, y estoy dispuesto a aprender cualquier tipo de lenguaje. Mi enfoque se centra en escribir código limpio, mantenible y eficiente, siempre buscando aplicar las mejores prácticas.',
+  'Recién graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Soy un desarrollador apasionado por crear experiencias digitales excepcionales. Actualmente estoy estudiando más tecnologías y frameworks, y estoy dispuesto a aprender cualquier tipo de lenguaje. Mi stack principal incluye: HTML, CSS, JavaScript, PHP, MySQL, React, Node.js y Git.',
   'rotarualex1612@gmail.com',
   '610211872',
   'Elche, Alicante',
@@ -133,19 +133,19 @@ INSERT INTO `skills` (`name`, `category`, `level`, `icon_class`) VALUES
 ('Git',        'tools',    90, 'devicon-git-plain'),
 ('Node.js',    'backend',  75, 'devicon-nodejs-plain');
 
--- Experiencia laboral (2 entradas de ejemplo)
+-- Experiencia laboral (datos reales)
 INSERT INTO `experience` (`company`, `position`, `description`, `start_date`, `end_date`) VALUES
 (
-  'TechSolutions S.L.',
-  'Desarrollador Full Stack Senior',
-  'Lideré el desarrollo de aplicaciones web empresariales utilizando PHP, Laravel y Vue.js. Implementé arquitecturas escalables, optimicé consultas de base de datos y mentoricé a desarrolladores junior. Participé activamente en la planificación de sprints y revisiones de código.',
-  '2024-03-01',
-  NULL
+  'Rechgo',
+  'Desarrollador Web',
+  'Desarrollo y mantenimiento de sitios web con WordPress, además de trabajo directo con código PHP, JavaScript y CSS para personalizar funcionalidades y diseño.',
+  '2025-03-01',
+  '2025-06-30'
 ),
 (
-  'Agencia Digital CreativeWeb',
-  'Desarrollador Web Junior',
-  'Desarrollé sitios web responsive para diversos clientes utilizando HTML, CSS, JavaScript y WordPress. Colaboré en proyectos de e-commerce con WooCommerce y participé en la migración de aplicaciones legacy a tecnologías modernas.',
-  '2022-06-15',
-  '2024-02-28'
+  'Savour',
+  'Desarrollador WordPress',
+  'Gestión y desarrollo de contenido web mediante WordPress, enfocado en la creación y optimización de páginas para la empresa.',
+  '2025-06-01',
+  '2025-06-30'
 );
