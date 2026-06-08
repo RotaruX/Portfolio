@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 export const Login = () => {
@@ -73,7 +73,7 @@ export const Login = () => {
           </button>
         </form>
         <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-           <a href="/" style={{ color: '#6b9e7a', textDecoration: 'none', fontSize: '0.9rem' }}>&larr; Volver al Portfolio</a>
+           <Link to="/" style={{ color: '#6b9e7a', textDecoration: 'none', fontSize: '0.9rem' }}>&larr; Volver al Portfolio</Link>
         </div>
       </div>
     </div>

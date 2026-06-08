@@ -131,7 +131,8 @@ INSERT INTO `skills` (`name`, `category`, `level`, `icon_class`) VALUES
 ('MySQL',      'backend',  82, 'devicon-mysql-plain'),
 ('React',      'frontend', 78, 'devicon-react-original'),
 ('Git',        'tools',    90, 'devicon-git-plain'),
-('Node.js',    'backend',  75, 'devicon-nodejs-plain');
+('Node.js',    'backend',  75, 'devicon-nodejs-plain'),
+('Java',       'backend',  70, 'devicon-java-plain');
 
 -- Experiencia laboral (datos reales)
 INSERT INTO `experience` (`company`, `position`, `description`, `start_date`, `end_date`) VALUES

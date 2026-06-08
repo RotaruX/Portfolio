@@ -87,6 +87,11 @@ export const Header = () => {
               <i className="fas fa-code"></i> Proyectos
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/admin" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={closeMenu} style={{ color: 'var(--accent-primary)' }}>
+              <i className="fas fa-user-shield"></i> Panel
+            </NavLink>
+          </li>
         </ul>
 
         {/* Botón hamburguesa para móvil */}
