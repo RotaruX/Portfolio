@@ -87,12 +87,17 @@ export const Header = () => {
               <i className="fas fa-code"></i> Proyectos
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/admin" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={closeMenu} style={{ color: 'var(--accent-primary)' }}>
-              <i className="fas fa-user-shield"></i> Panel
+          <li className="nav-login-mobile">
+            <NavLink to="/admin/login" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={closeMenu} style={{ color: 'var(--accent-primary)' }}>
+              <i className="fas fa-sign-in-alt"></i> Iniciar Sesión
             </NavLink>
           </li>
         </ul>
+
+        {/* Icono de Login */}
+        <Link to="/admin/login" className="nav-login-btn" title="Iniciar Sesión" onClick={closeMenu}>
+          <i className="fas fa-sign-in-alt"></i>
+        </Link>
 
         {/* Botón hamburguesa para móvil */}
         <button
