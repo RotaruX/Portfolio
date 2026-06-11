@@ -1,0 +1,40 @@
+# ============================================================
+# CONFIGURACIÓN APACHE (Arsys / Producción)
+# ============================================================
+
+# 1. BLOQUEAR ACCESO A ARCHIVOS SENSIBLES Y DE ENTORNO
+# Esto evita que cualquier visitante pueda leer tu archivo .env o .env.example
+<FilesMatch "^\.env">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 2. SOPORTE DE DIRECCIONAMIENTO PARA SPAS (React Router)
+# Si en algún momento decides cambiar HashRouter por BrowserRouter,
+# esta regla redirigirá todas las peticiones que no sean archivos físicos
+# ni la carpeta api/ de vuelta a index.php / index.html para que React maneje las rutas.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Si la petición es para index.php o index.html, no hacer nada
+    RewriteRule ^index\.php$ - [L]
+    RewriteRule ^index\.html$ - [L]
+    
+    # Si la petición apunta a un archivo físico o directorio que existe, no hacer nada
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    
+    # Si la petición es para el backend (/api), dejar que Apache la procese directamente
+    RewriteCond %{REQUEST_URI} ^/api/ [NC]
+    RewriteRule ^ - [L]
+    
+    # Redirigir el resto de peticiones a index.php para cargar React
+    RewriteRule ^ index.php [L]
+</IfModule>

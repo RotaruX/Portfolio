@@ -1,4 +1,7 @@
 <?php
+// Cargar variables de entorno
+require_once 'env.php';
+
 // Permitir solicitudes CORS desde cualquier origen (para desarrollo)
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -11,11 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// Configuración de la base de datos
-$db_host = 'localhost';
-$db_name = 'portfolio_db';
-$db_user = 'root';
-$db_pass = '';
+// Configuración de la base de datos usando variables de entorno o valores por defecto locales
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_name = getenv('DB_NAME') ?: 'portfolio_db';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 $db_charset = 'utf8mb4';
 
 // DSN (Data Source Name) para la conexión PDO

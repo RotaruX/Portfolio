@@ -10,6 +10,10 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost/Portfolio',
         changeOrigin: true,
+      },
+      '/assets/img/projects': {
+        target: 'http://localhost/Portfolio',
+        changeOrigin: true,
       }
     }
   }

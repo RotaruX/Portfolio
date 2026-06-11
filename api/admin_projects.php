@@ -8,7 +8,10 @@ header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
 function checkAuth() {
     $headers = apache_request_headers();
     $authHeader = $headers['Authorization'] ?? '';
-    $expectedToken = 'Bearer ' . base64_encode('RotaruX:portfolio_admin_secure_token_2026');
+    
+    $validUser = getenv('ADMIN_USER') ?: 'RotaruX';
+    $tokenSecret = getenv('ADMIN_TOKEN_SECRET') ?: 'portfolio_admin_secure_token_2026';
+    $expectedToken = 'Bearer ' . base64_encode($validUser . ':' . $tokenSecret);
     
     if ($authHeader !== $expectedToken) {
         http_response_code(401);
