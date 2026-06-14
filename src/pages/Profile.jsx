@@ -1,12 +1,13 @@
 import React from 'react';
 import { useFetch } from '../hooks/useFetch';
+import { getApiUrl } from '../utils/api';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { SkillBar } from '../components/ui/SkillBar';
 
 export const Profile = () => {
-  const { data: profileData, loading: profileLoading, error: profileError } = useFetch('api/profile.php');
-  const { data: expData, loading: expLoading } = useFetch('api/experience.php');
-  const { data: skillsData, loading: skillsLoading } = useFetch('api/skills.php');
+  const { data: profileData, loading: profileLoading, error: profileError } = useFetch(getApiUrl('api/profile.php'));
+  const { data: expData, loading: expLoading } = useFetch(getApiUrl('api/experience.php'));
+  const { data: skillsData, loading: skillsLoading } = useFetch(getApiUrl('api/skills.php'));
 
   if (profileLoading || expLoading || skillsLoading) {
     return (

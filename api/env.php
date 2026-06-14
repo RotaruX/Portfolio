@@ -43,4 +43,8 @@ function loadEnv($path) {
 }
 
 // Cargar automáticamente desde la raíz del proyecto (un directorio por encima de /api)
-loadEnv(__DIR__ . '/../.env');
+// Prioridad: .env > .env.production (para que funcione tanto en local como en Arsys)
+$envLoaded = loadEnv(__DIR__ . '/../.env');
+if (!$envLoaded) {
+    loadEnv(__DIR__ . '/../.env.production');
+}

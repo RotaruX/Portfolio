@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getApiUrl } from '../utils/api';
 
 export const useAuth = () => {
   const [token, setToken] = useState(() => localStorage.getItem('admin_token'));
@@ -12,7 +13,8 @@ export const useAuth = () => {
   }, [token]);
 
   const login = async (username, password) => {
-    const res = await fetch('api/auth.php', {
+    const apiUrl = getApiUrl('api/auth.php');
+    const res = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })

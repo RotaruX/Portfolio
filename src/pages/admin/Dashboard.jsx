@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { getApiUrl } from '../../utils/api';
 
 export const Dashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -11,7 +12,8 @@ export const Dashboard = () => {
   const fetchProjects = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('api/admin_projects.php', {
+      const apiUrl = getApiUrl('api/admin_projects.php');
+      const res = await fetch(apiUrl, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -34,7 +36,8 @@ export const Dashboard = () => {
     if (!window.confirm('¿Estás seguro de que quieres eliminar este proyecto?')) return;
     
     try {
-      const res = await fetch(`api/admin_projects.php?id=${id}`, {
+      const apiUrl = getApiUrl(`api/admin_projects.php?id=${id}`);
+      const res = await fetch(apiUrl, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

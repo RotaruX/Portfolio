@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useFetch } from '../hooks/useFetch';
+import { getApiUrl } from '../utils/api';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 
 export const Projects = () => {
-  const { data, loading, error } = useFetch('api/projects.php');
+  const { data, loading, error } = useFetch(getApiUrl('api/projects.php'));
   const [detailedProject, setDetailedProject] = useState(null);
 
   useEffect(() => {

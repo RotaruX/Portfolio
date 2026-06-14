@@ -14,11 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// Configuración de la base de datos usando variables de entorno o valores por defecto locales
-$db_host = getenv('DB_HOST') ?: 'localhost';
-$db_name = getenv('DB_NAME') ?: 'portfolio_db';
-$db_user = getenv('DB_USER') ?: 'root';
-$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+// Configuración de la base de datos usando variables de entorno o valores por defecto locales/producción
+$db_host = getenv('DB_HOST') ?: 'qaqu742.alexrotaru.es';
+$db_name = getenv('DB_NAME') ?: 'qaqu742';
+$db_user = getenv('DB_USER') ?: 'qaqu742';
+$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : 'Limpiacacas11.';
 $db_charset = 'utf8mb4';
 
 // DSN (Data Source Name) para la conexión PDO

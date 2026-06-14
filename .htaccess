@@ -22,6 +22,9 @@
     RewriteEngine On
     RewriteBase /
     
+    # Forzar que Apache sirva index.php (React compilado) en lugar de index.html (dev)
+    DirectoryIndex index.php index.html
+    
     # Si la petición es para index.php o index.html, no hacer nada
     RewriteRule ^index\.php$ - [L]
     RewriteRule ^index\.html$ - [L]

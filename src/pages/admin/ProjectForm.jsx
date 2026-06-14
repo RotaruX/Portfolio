@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { getApiUrl } from '../../utils/api';
 
 export const ProjectForm = () => {
   const { id } = useParams();
@@ -27,7 +28,8 @@ export const ProjectForm = () => {
     if (isEdit) {
       const fetchProject = async () => {
         try {
-          const res = await fetch(`api/admin_projects.php?id=${id}`, {
+          const apiUrl = getApiUrl(`api/admin_projects.php?id=${id}`);
+          const res = await fetch(apiUrl, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           if (!res.ok) throw new Error('Error al cargar proyecto');
@@ -100,7 +102,8 @@ export const ProjectForm = () => {
     }
 
     try {
-      const res = await fetch('api/admin_projects.php', {
+      const apiUrl = getApiUrl('api/admin_projects.php');
+      const res = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: data

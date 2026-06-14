@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFetch } from '../hooks/useFetch';
+import { getApiUrl } from '../utils/api';
 import { Hero } from '../components/home/Hero';
 import { About } from '../components/home/About';
 import { Skills } from '../components/home/Skills';
@@ -7,9 +8,9 @@ import { FeaturedProjects } from '../components/home/FeaturedProjects';
 import { CTA } from '../components/home/CTA';
 
 export const Home = () => {
-  const { data: profileData, loading: profileLoading, error: profileError } = useFetch('api/profile.php');
-  const { data: projectsData, loading: projectsLoading } = useFetch('api/projects.php?featured=1');
-  const { data: skillsData, loading: skillsLoading } = useFetch('api/skills.php');
+  const { data: profileData, loading: profileLoading, error: profileError } = useFetch(getApiUrl('api/profile.php'));
+  const { data: projectsData, loading: projectsLoading } = useFetch(getApiUrl('api/projects.php?featured=1'));
+  const { data: skillsData, loading: skillsLoading } = useFetch(getApiUrl('api/skills.php'));
 
   if (profileLoading || skillsLoading || projectsLoading) {
     return (
