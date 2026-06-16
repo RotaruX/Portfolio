@@ -1,10 +1,11 @@
-import React from 'react';
-import { Navigate, Outlet, Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Navigate, Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 export const AdminLayout = () => {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
@@ -15,25 +16,62 @@ export const AdminLayout = () => {
     navigate('/admin/login');
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(prev => !prev);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#0a1a0f', color: '#e0f2e8' }}>
+    <div className="admin-layout-container">
+      {/* Barra superior para móviles */}
+      <div className="admin-top-bar">
+        <h2>Admin Panel</h2>
+        <button 
+          className="admin-menu-toggle" 
+          onClick={toggleSidebar} 
+          aria-label="Abrir navegación lateral"
+          aria-expanded={isSidebarOpen}
+        >
+          <i className={`fas ${isSidebarOpen ? 'fa-times' : 'fa-bars'}`}></i>
+        </button>
+      </div>
+
+      {/* Overlay de fondo en móvil */}
+      <div 
+        className={`admin-sidebar-overlay ${isSidebarOpen ? 'active' : ''}`} 
+        onClick={closeSidebar}
+      ></div>
+
       {/* Sidebar Admin */}
-      <aside style={{ width: '250px', backgroundColor: '#0f2318', padding: '2rem', borderRight: '1px solid rgba(0, 255, 136, 0.1)' }}>
-        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          <h2 style={{ color: '#00ff88', margin: 0 }}>Admin Panel</h2>
-          <p style={{ fontSize: '0.8rem', color: '#6b9e7a', marginTop: '5px' }}>Portfolio Manager</p>
+      <aside className={`admin-sidebar ${isSidebarOpen ? 'active' : ''}`}>
+        <div className="admin-sidebar-logo">
+          <h2>Admin Panel</h2>
+          <p>Portfolio Manager</p>
         </div>
         
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <Link to="/admin" style={{ color: '#e0f2e8', textDecoration: 'none', padding: '10px', borderRadius: '6px', backgroundColor: 'rgba(0, 255, 136, 0.05)' }}>
-            <i className="fas fa-folder-open" style={{ marginRight: '10px', width: '20px' }}></i> Proyectos
-          </Link>
-          <Link to="/" target="_blank" style={{ color: '#e0f2e8', textDecoration: 'none', padding: '10px', borderRadius: '6px' }}>
-            <i className="fas fa-external-link-alt" style={{ marginRight: '10px', width: '20px' }}></i> Ver Portfolio
+        <nav className="admin-sidebar-nav">
+          <NavLink 
+            to="/admin" 
+            end
+            className={({ isActive }) => `admin-sidebar-link ${isActive ? 'active' : ''}`}
+            onClick={closeSidebar}
+          >
+            <i className="fas fa-folder-open"></i> Proyectos
+          </NavLink>
+          <Link 
+            to="/" 
+            target="_blank" 
+            className="admin-sidebar-link"
+            onClick={closeSidebar}
+          >
+            <i className="fas fa-external-link-alt"></i> Ver Portfolio
           </Link>
         </nav>
 
-        <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid rgba(0, 255, 136, 0.1)', position: 'absolute', bottom: '2rem', width: 'calc(250px - 4rem)' }}>
+        <div className="admin-sidebar-footer">
           <button onClick={handleLogout} className="btn btn-outline" style={{ width: '100%', padding: '10px' }}>
             <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
           </button>
@@ -41,9 +79,10 @@ export const AdminLayout = () => {
       </aside>
 
       {/* Main Content */}
-      <main style={{ flex: 1, padding: '3rem', overflowY: 'auto' }}>
+      <main className="admin-main">
         <Outlet />
       </main>
     </div>
   );
 };
+

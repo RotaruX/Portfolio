@@ -2247,3 +2247,516 @@ img {
     background: var(--accent-primary);
 }
 
+/* ============================================================
+   PANEL DE ADMINISTRACIÓN - ESTILOS RESPONSIVOS
+   ============================================================ */
+
+/* Contenedores Principales */
+.admin-layout-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: var(--bg-secondary);
+    padding: 2rem;
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    transition: transform var(--transition-normal);
+    z-index: 1010;
+}
+
+.admin-sidebar-logo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.admin-sidebar-logo h2 {
+    color: var(--accent-primary);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.admin-sidebar-logo p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.admin-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-sidebar-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.admin-sidebar-link i {
+    font-size: 0.95rem;
+    width: 20px;
+    text-align: center;
+}
+
+.admin-sidebar-link:hover,
+.admin-sidebar-link.active {
+    background-color: rgba(0, 255, 136, 0.08);
+    color: var(--accent-primary);
+}
+
+.admin-sidebar-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.admin-main {
+    flex: 1;
+    padding: 3rem;
+    overflow-y: auto;
+    min-width: 0; /* Evita que desborde flex */
+    transition: padding var(--transition-normal);
+}
+
+/* Barra Superior Móvil */
+.admin-top-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--glass-border);
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1009;
+}
+
+.admin-top-bar h2 {
+    color: var(--accent-primary);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.admin-menu-toggle {
+    background: none;
+    border: none;
+    color: var(--accent-primary);
+    font-size: 1.35rem;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+}
+
+.admin-menu-toggle:hover {
+    color: var(--accent-secondary);
+}
+
+/* Overlay para menú móvil */
+.admin-sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(10, 26, 15, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 1008;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+.admin-sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Encabezados y Páginas Admin */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.admin-page-header h1,
+.admin-page-header h2 {
+    color: var(--accent-primary);
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.admin-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Tablas Responsivas */
+.admin-table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+    background-color: var(--bg-secondary);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admin-table th {
+    background-color: rgba(0, 255, 136, 0.04);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px 20px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-table td {
+    padding: 16px 20px;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.05);
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Formularios Admin */
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.admin-form-group label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.15);
+}
+
+.admin-checkbox-group {
+    margin-bottom: 1.5rem;
+}
+
+.admin-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.admin-checkbox-custom {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(0, 255, 136, 0.4);
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.admin-checkbox-label:hover .admin-checkbox-custom {
+    border-color: var(--accent-primary);
+}
+
+.admin-checkbox-label input:checked + .admin-checkbox-custom {
+    background-color: rgba(0, 255, 136, 0.2);
+    border-color: var(--accent-primary);
+}
+
+.admin-checkbox-label input:checked + .admin-checkbox-custom i {
+    color: var(--accent-primary);
+    font-size: 0.75rem;
+    display: block;
+}
+
+/* Zona de Carga de Imagen */
+.admin-file-upload {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 255, 136, 0.02);
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+}
+
+.admin-file-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+    border: 2px dashed rgba(0, 255, 136, 0.3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+    text-align: center;
+}
+
+.admin-file-dropzone:hover {
+    background-color: rgba(0, 255, 136, 0.04);
+    border-color: var(--accent-primary);
+}
+
+.admin-file-dropzone i {
+    font-size: 2.2rem;
+    color: var(--accent-primary);
+    margin-bottom: 12px;
+}
+
+.admin-file-dropzone-title {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.admin-file-dropzone-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+}
+
+.admin-file-preview {
+    margin-bottom: 15px;
+}
+
+.admin-file-preview img {
+    max-width: 180px;
+    max-height: 120px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Inicio de Sesión */
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    padding: 20px;
+}
+
+.admin-login-card {
+    background-color: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--shadow-card);
+    transition: padding var(--transition-normal);
+}
+
+.admin-login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.admin-login-logo h2 {
+    color: var(--accent-primary);
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.admin-login-logo p {
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-size: 0.95rem;
+}
+
+.admin-login-error {
+    background-color: rgba(255, 68, 68, 0.08);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* CONSULTAS DE MEDIOS RESPONSIVOS (ADMIN) */
+@media (max-width: 1024px) {
+    .admin-main {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-top-bar {
+        display: flex;
+    }
+
+    .admin-sidebar-overlay {
+        display: block;
+    }
+
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        height: 100vh;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+        border-right: 1px solid var(--glass-border-hover);
+    }
+
+    .admin-sidebar.active {
+        transform: translateX(0);
+    }
+
+    .admin-main {
+        padding: 80px 20px 40px; /* Margen superior para topbar fijo */
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .admin-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-top-bar {
+        padding: 0 16px;
+    }
+
+    .admin-top-bar h2 {
+        font-size: 1.1rem;
+    }
+
+    .admin-main {
+        padding: 80px 16px 30px;
+    }
+
+    .admin-login-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .admin-login-logo h2 {
+        font-size: 1.5rem;
+    }
+
+    .admin-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-page-header .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .admin-form-actions {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .admin-form-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Modal público responsivo */
+    .project-modal-content {
+        padding: 20px 16px;
+        max-height: 95vh;
+    }
+
+    .project-modal-title {
+        font-size: 1.4rem;
+        padding-right: 30px; /* Evita tapar con botón cerrar */
+    }
+
+    .project-modal-close {
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .project-roles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

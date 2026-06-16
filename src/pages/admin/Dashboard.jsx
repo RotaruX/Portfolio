@@ -52,53 +52,69 @@ export const Dashboard = () => {
     }
   };
 
-  if (loading) return <div style={{color:'#00ff88'}}>Cargando proyectos...</div>;
-  if (error) return <div style={{color:'red'}}>{error}</div>;
+  if (loading) return <div style={{ color: 'var(--accent-primary)', padding: '2rem', textAlign: 'center' }}>Cargando proyectos...</div>;
+  if (error) return <div style={{ color: '#ff4444', padding: '2rem', textAlign: 'center' }}>{error}</div>;
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h1 style={{ color: '#00ff88', margin: 0 }}>Gestión de Proyectos</h1>
-        <Link to="/admin/projects/new" className="btn btn-primary" style={{ padding: '10px 20px', textDecoration: 'none' }}>
+      <div className="admin-page-header">
+        <h1>Gestión de Proyectos</h1>
+        <Link to="/admin/projects/new" className="btn btn-primary">
           <i className="fas fa-plus"></i> Añadir Proyecto
         </Link>
       </div>
 
-      <div style={{ backgroundColor: '#0f2318', borderRadius: '12px', border: '1px solid rgba(0, 255, 136, 0.1)', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+      <div className="admin-table-responsive">
+        <table className="admin-table">
           <thead>
-            <tr style={{ backgroundColor: 'rgba(0, 255, 136, 0.05)', borderBottom: '1px solid rgba(0, 255, 136, 0.1)' }}>
-              <th style={{ padding: '15px 20px', color: '#6b9e7a' }}>Imagen</th>
-              <th style={{ padding: '15px 20px', color: '#6b9e7a' }}>Título</th>
-              <th style={{ padding: '15px 20px', color: '#6b9e7a' }}>Categoría</th>
-              <th style={{ padding: '15px 20px', color: '#6b9e7a' }}>Acciones</th>
+            <tr>
+              <th>Imagen</th>
+              <th>Título</th>
+              <th>Categoría</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {projects.length === 0 ? (
               <tr>
-                <td colSpan="4" style={{ padding: '20px', textAlign: 'center', color: '#6b9e7a' }}>No hay proyectos. Añade uno nuevo.</td>
+                <td colSpan="4" style={{ textAlign: 'center', color: 'var(--text-secondary)' }}>
+                  No hay proyectos. Añade uno nuevo.
+                </td>
               </tr>
             ) : projects.map(p => (
-              <tr key={p.id} style={{ borderBottom: '1px solid rgba(0, 255, 136, 0.05)' }}>
-                <td style={{ padding: '15px 20px' }}>
+              <tr key={p.id}>
+                <td>
                   {p.image_url ? (
-                    <img src={p.image_url} alt={p.title} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '6px' }} />
+                    <img 
+                      src={p.image_url} 
+                      alt={p.title} 
+                      style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '6px', border: '1px solid var(--glass-border)' }} 
+                    />
                   ) : (
-                    <div style={{ width: '50px', height: '50px', backgroundColor: '#132e1c', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <i className="fas fa-image" style={{ color: '#6b9e7a' }}></i>
+                    <div style={{ width: '50px', height: '50px', backgroundColor: 'var(--bg-tertiary)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--glass-border)' }}>
+                      <i className="fas fa-image" style={{ color: 'var(--text-secondary)' }}></i>
                     </div>
                   )}
                 </td>
-                <td style={{ padding: '15px 20px', color: '#e0f2e8', fontWeight: 500 }}>{p.title}</td>
-                <td style={{ padding: '15px 20px', color: '#6b9e7a', textTransform: 'capitalize' }}>{p.category}</td>
-                <td style={{ padding: '15px 20px' }}>
-                  <Link to={`/admin/projects/edit/${p.id}`} className="btn btn-outline" style={{ padding: '5px 10px', fontSize: '0.8rem', marginRight: '10px', textDecoration: 'none' }}>
-                    <i className="fas fa-edit"></i> Editar
-                  </Link>
-                  <button onClick={() => handleDelete(p.id)} className="btn btn-outline" style={{ padding: '5px 10px', fontSize: '0.8rem', borderColor: '#ff4444', color: '#ff4444' }}>
-                    <i className="fas fa-trash"></i> Borrar
-                  </button>
+                <td style={{ fontWeight: 500 }}>{p.title}</td>
+                <td style={{ textTransform: 'capitalize', color: 'var(--text-secondary)' }}>{p.category}</td>
+                <td>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <Link 
+                      to={`/admin/projects/edit/${p.id}`} 
+                      className="btn btn-outline" 
+                      style={{ padding: '6px 12px', fontSize: '0.8rem' }}
+                    >
+                      <i className="fas fa-edit"></i> Editar
+                    </Link>
+                    <button 
+                      onClick={() => handleDelete(p.id)} 
+                      className="btn btn-outline" 
+                      style={{ padding: '6px 12px', fontSize: '0.8rem', borderColor: '#ff4444', color: '#ff4444' }}
+                    >
+                      <i className="fas fa-trash"></i> Borrar
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

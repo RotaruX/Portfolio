@@ -31,39 +31,36 @@ export const Login = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: '#0a1a0f' }}>
-      <div style={{ backgroundColor: '#0f2318', padding: '3rem', borderRadius: '12px', border: '1px solid rgba(0, 255, 136, 0.1)', width: '100%', maxWidth: '400px', boxShadow: '0 4px 24px rgba(0,0,0,0.3)' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h2 style={{ color: '#00ff88', margin: 0 }}>Acceso Seguro</h2>
-          <p style={{ color: '#6b9e7a', marginTop: '10px' }}>Introduce tus credenciales</p>
+    <div className="admin-login-container">
+      <div className="admin-login-card">
+        <div className="admin-login-logo">
+          <h2>Acceso Seguro</h2>
+          <p>Introduce tus credenciales</p>
         </div>
 
-        {error && (
-          <div style={{ backgroundColor: 'rgba(255, 68, 68, 0.1)', border: '1px solid #ff4444', color: '#ff4444', padding: '10px', borderRadius: '6px', marginBottom: '1.5rem', textAlign: 'center' }}>
-            {error}
-          </div>
-        )}
+        {error && <div className="admin-login-error">{error}</div>}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div>
-            <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>Usuario</label>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          <div className="admin-form-group" style={{ marginBottom: '0' }}>
+            <label style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '8px' }}>Usuario</label>
             <input 
               type="text" 
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              style={{ width: '100%', padding: '12px', borderRadius: '6px', border: '1px solid rgba(0, 255, 136, 0.2)', backgroundColor: '#0a1a0f', color: '#e0f2e8', outline: 'none' }}
+              className="admin-input"
               autoComplete="username"
             />
           </div>
-          <div>
-            <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>Contraseña</label>
+          
+          <div className="admin-form-group" style={{ marginBottom: '0' }}>
+            <label style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '8px' }}>Contraseña</label>
             <input 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={{ width: '100%', padding: '12px', borderRadius: '6px', border: '1px solid rgba(0, 255, 136, 0.2)', backgroundColor: '#0a1a0f', color: '#e0f2e8', outline: 'none' }}
+              className="admin-input"
               autoComplete="current-password"
             />
           </div>
@@ -72,8 +69,11 @@ export const Login = () => {
             {loading ? 'Verificando...' : 'Entrar al Panel'}
           </button>
         </form>
+        
         <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-           <Link to="/" style={{ color: '#6b9e7a', textDecoration: 'none', fontSize: '0.9rem' }}>&larr; Volver al Portfolio</Link>
+           <Link to="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.9rem' }}>
+             &larr; Volver al Portfolio
+           </Link>
         </div>
       </div>
     </div>

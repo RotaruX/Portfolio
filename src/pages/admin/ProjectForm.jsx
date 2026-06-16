@@ -119,30 +119,42 @@ export const ProjectForm = () => {
     }
   };
 
-  if (loading) return <div style={{color:'#00ff88'}}>Cargando datos...</div>;
-
-  const inputStyle = { width: '100%', padding: '12px', borderRadius: '6px', border: '1px solid rgba(0, 255, 136, 0.2)', backgroundColor: '#0a1a0f', color: '#e0f2e8', outline: 'none', marginBottom: '1rem' };
+  if (loading) return <div style={{ color: 'var(--accent-primary)', padding: '2rem', textAlign: 'center' }}>Cargando datos...</div>;
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', backgroundColor: '#0f2318', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(0, 255, 136, 0.1)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
-        <Link to="/admin" style={{ color: '#6b9e7a', marginRight: '1rem', textDecoration: 'none' }}>
-          <i className="fas fa-arrow-left"></i>
-        </Link>
-        <h2 style={{ color: '#00ff88', margin: 0 }}>{isEdit ? 'Editar Proyecto' : 'Añadir Nuevo Proyecto'}</h2>
+    <div className="admin-card" style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <div className="admin-page-header">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <Link to="/admin" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+            <i className="fas fa-arrow-left"></i>
+          </Link>
+          <h2>{isEdit ? 'Editar Proyecto' : 'Añadir Nuevo Proyecto'}</h2>
+        </div>
       </div>
 
-      {error && <div style={{ color: '#ff4444', marginBottom: '1rem' }}>{error}</div>}
+      {error && <div className="admin-login-error">{error}</div>}
 
       <form onSubmit={handleSubmit}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-          <div>
-            <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>Título *</label>
-            <input type="text" name="title" value={formData.title} onChange={handleChange} required style={inputStyle} />
+        <div className="admin-form-grid">
+          <div className="admin-form-group">
+            <label>Título *</label>
+            <input 
+              type="text" 
+              name="title" 
+              value={formData.title} 
+              onChange={handleChange} 
+              required 
+              className="admin-input" 
+            />
           </div>
-          <div>
-            <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>Categoría</label>
-            <select name="category" value={formData.category} onChange={handleChange} style={inputStyle}>
+          <div className="admin-form-group">
+            <label>Categoría</label>
+            <select 
+              name="category" 
+              value={formData.category} 
+              onChange={handleChange} 
+              className="admin-input"
+            >
               <option value="web">Web</option>
               <option value="app">Aplicación</option>
               <option value="other">Otro</option>
@@ -150,14 +162,29 @@ export const ProjectForm = () => {
           </div>
         </div>
 
-        <div>
-          <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>Descripción</label>
-          <textarea name="description" value={formData.description} onChange={handleChange} rows="4" style={{...inputStyle, resize: 'vertical'}}></textarea>
+        <div className="admin-form-group">
+          <label>Descripción</label>
+          <textarea 
+            name="description" 
+            value={formData.description} 
+            onChange={handleChange} 
+            rows="4" 
+            className="admin-input"
+            style={{ resize: 'vertical' }}
+          ></textarea>
         </div>
 
-        <div>
-          <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>Tecnologías</label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', padding: '15px', borderRadius: '6px', border: '1px solid rgba(0, 255, 136, 0.2)', backgroundColor: '#0a1a0f', marginBottom: '1rem' }}>
+        <div className="admin-form-group">
+          <label>Tecnologías</label>
+          <div style={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            gap: '10px', 
+            padding: '15px', 
+            borderRadius: 'var(--radius-sm)', 
+            border: '1px solid rgba(0, 255, 136, 0.2)', 
+            backgroundColor: 'var(--bg-primary)'
+          }}>
             {['React', 'HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'Node.js', 'WordPress', 'Git', 'TypeScript'].map(tech => {
               const isChecked = formData.technologies.split(',').map(t => t.trim()).includes(tech);
               return (
@@ -169,8 +196,8 @@ export const ProjectForm = () => {
                   fontWeight: 600,
                   transition: 'all 0.3s ease',
                   backgroundColor: isChecked ? 'rgba(0, 255, 136, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                  color: isChecked ? '#00ff88' : '#6b9e7a',
-                  border: `1px solid ${isChecked ? '#00ff88' : 'rgba(255, 255, 255, 0.1)'}`,
+                  color: isChecked ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                  border: `1px solid ${isChecked ? 'var(--accent-primary)' : 'rgba(255, 255, 255, 0.1)'}`,
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px'
@@ -189,63 +216,75 @@ export const ProjectForm = () => {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-          <div>
-            <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>URL del Proyecto (Demo)</label>
-            <input type="url" name="project_url" value={formData.project_url} onChange={handleChange} style={inputStyle} />
+        <div className="admin-form-grid">
+          <div className="admin-form-group">
+            <label>URL del Proyecto (Demo)</label>
+            <input 
+              type="url" 
+              name="project_url" 
+              value={formData.project_url} 
+              onChange={handleChange} 
+              className="admin-input" 
+            />
           </div>
-          <div>
-            <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '8px' }}>URL de GitHub</label>
-            <input type="url" name="github_url" value={formData.github_url} onChange={handleChange} style={inputStyle} />
+          <div className="admin-form-group">
+            <label>URL de GitHub</label>
+            <input 
+              type="url" 
+              name="github_url" 
+              value={formData.github_url} 
+              onChange={handleChange} 
+              className="admin-input" 
+            />
           </div>
         </div>
 
-        <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center' }}>
-          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-            <div style={{
-              width: '24px', height: '24px', borderRadius: '6px', 
-              border: `2px solid ${formData.featured ? '#00ff88' : 'rgba(0, 255, 136, 0.4)'}`,
-              backgroundColor: formData.featured ? 'rgba(0, 255, 136, 0.2)' : 'transparent',
-              display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '10px',
-              transition: 'all 0.2s ease'
-            }}>
-              {formData.featured && <i className="fas fa-check" style={{ color: '#00ff88', fontSize: '0.8rem' }}></i>}
+        <div className="admin-checkbox-group">
+          <label className="admin-checkbox-label">
+            <input 
+              type="checkbox" 
+              id="featured" 
+              name="featured" 
+              checked={formData.featured} 
+              onChange={handleChange} 
+              style={{ display: 'none' }} 
+            />
+            <div className="admin-checkbox-custom">
+              {formData.featured && <i className="fas fa-check"></i>}
             </div>
-            <input type="checkbox" id="featured" name="featured" checked={formData.featured} onChange={handleChange} style={{ display: 'none' }} />
-            <span style={{ color: '#e0f2e8', fontWeight: 500 }}>Proyecto Destacado (se mostrará en la Home)</span>
+            <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
+              Proyecto Destacado (se mostrará en la Home)
+            </span>
           </label>
         </div>
 
-        <div style={{ marginBottom: '2rem', padding: '1.5rem', backgroundColor: 'rgba(0, 255, 136, 0.03)', borderRadius: '8px', border: '1px solid rgba(0, 255, 136, 0.1)' }}>
-          <label style={{ display: 'block', color: '#e0f2e8', marginBottom: '15px', fontWeight: 600 }}>Imagen del Proyecto</label>
+        <div className="admin-file-upload">
+          <label style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '15px', fontWeight: 600 }}>
+            Imagen del Proyecto
+          </label>
           
           {formData.existing_image_url && !imageFile && (
-            <div style={{ marginBottom: '15px' }}>
-              <img src={formData.existing_image_url} alt="Vista previa" style={{ maxWidth: '200px', borderRadius: '8px', border: '1px solid rgba(0, 255, 136, 0.2)' }} />
-              <p style={{ color: '#6b9e7a', fontSize: '0.85rem', margin: '8px 0 0 0' }}>Imagen actual (se mantendrá si no subes una nueva)</p>
+            <div className="admin-file-preview">
+              <img src={formData.existing_image_url} alt="Vista previa" />
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: '8px 0 0 0' }}>
+                Imagen actual (se mantendrá si no subes una nueva)
+              </p>
             </div>
           )}
 
-          <label style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-            padding: '2rem', border: '2px dashed rgba(0, 255, 136, 0.3)', borderRadius: '8px', 
-            cursor: 'pointer', transition: 'all 0.3s ease', backgroundColor: 'rgba(0, 0, 0, 0.2)'
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(0, 255, 136, 0.05)'; e.currentTarget.style.borderColor = '#00ff88'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.2)'; e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.3)'; }}
-          >
-            <i className="fas fa-cloud-upload-alt" style={{ fontSize: '2.5rem', color: '#00ff88', marginBottom: '15px' }}></i>
-            <span style={{ color: '#e0f2e8', fontWeight: 500, fontSize: '1.1rem', marginBottom: '5px' }}>
+          <label className="admin-file-dropzone">
+            <i className="fas fa-cloud-upload-alt"></i>
+            <span className="admin-file-dropzone-title">
               {imageFile ? imageFile.name : 'Haz clic para seleccionar una imagen'}
             </span>
-            <span style={{ color: '#6b9e7a', fontSize: '0.85rem' }}>PNG, JPG, WEBP o GIF (Max. 5MB)</span>
+            <span className="admin-file-dropzone-subtitle">PNG, JPG, WEBP o GIF (Max. 5MB)</span>
             <input type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
           </label>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-          <Link to="/admin" className="btn btn-outline" style={{ padding: '12px 20px', textDecoration: 'none' }}>Cancelar</Link>
-          <button type="submit" disabled={saving} className="btn btn-primary" style={{ padding: '12px 20px' }}>
+        <div className="admin-form-actions">
+          <Link to="/admin" className="btn btn-outline">Cancelar</Link>
+          <button type="submit" disabled={saving} className="btn btn-primary">
             {saving ? 'Guardando...' : 'Guardar Proyecto'}
           </button>
         </div>
