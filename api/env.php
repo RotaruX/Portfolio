@@ -43,8 +43,44 @@ function loadEnv($path) {
 }
 
 // Cargar automáticamente desde la raíz del proyecto (un directorio por encima de /api)
-// Prioridad: .env > .env.production (para que funcione tanto en local como en Arsys)
-$envLoaded = loadEnv(__DIR__ . '/../.env');
-if (!$envLoaded) {
-    loadEnv(__DIR__ . '/../.env.production');
+// Detección inteligente de entorno (Local vs Producción) para evitar cargar credenciales de desarrollo en Arsys.
+$isLocalhost = false;
+if (isset($_SERVER['HTTP_HOST'])) {
+    $host = $_SERVER['HTTP_HOST'];
+    if ($host === 'localhost' || $host === '127.0.0.1' || preg_match('/^192\.168\./', $host) || preg_match('/^10\./', $host)) {
+        $isLocalhost = true;
+    }
+} else {
+    // Si se ejecuta desde CLI, asumimos local
+    $isLocalhost = true;
+}
+
+if ($isLocalhost) {
+    // En desarrollo local: Prioridad al archivo .env local
+    $envLoaded = loadEnv(__DIR__ . '/../.env');
+    if (!$envLoaded) {
+        loadEnv(__DIR__ . '/../.env.production');
+    }
+} else {
+    // En producción (Arsys):
+    // Si el usuario subió su .env de desarrollo local por error, lo detectamos y usamos .env.production.
+    $useProductionFile = true;
+    $dotEnvPath = __DIR__ . '/../.env';
+    
+    if (file_exists($dotEnvPath)) {
+        $content = @file_get_contents($dotEnvPath);
+        if ($content !== false && strpos($content, 'DB_HOST=localhost') !== false && strpos($content, 'DB_USER=root') !== false) {
+            // Es el .env local de XAMPP subido por error
+            $useProductionFile = true;
+        } else {
+            // Es un .env configurado específicamente para producción
+            $useProductionFile = false;
+        }
+    }
+    
+    if ($useProductionFile) {
+        loadEnv(__DIR__ . '/../.env.production');
+    } else {
+        loadEnv($dotEnvPath);
+    }
 }

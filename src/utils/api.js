@@ -1,23 +1,22 @@
 /**
- * Utility to resolve API URLs dynamically.
- * Works seamlessly across local development (Vite/XAMPP) and production (Arsys).
+ * Utilidad para resolver las URLs de la API de forma dinámica.
+ * Funciona sin problemas tanto en desarrollo local (Vite/XAMPP) como en producción (Arsys).
  */
 export const getApiUrl = (endpoint) => {
-  // 1. Use the environment variable VITE_API_URL if configured
-  const envUrl = import.meta.env.VITE_API_URL;
-  if (envUrl) {
-    const base = envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl;
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-    return `${base}/${cleanEndpoint}`;
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+
+  // 1. Comprobar si estamos en localhost
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const origin = window.location.origin;
+
+  // 2. Si estamos en producción, usar el dominio de producción dinámicamente
+  if (!isLocalhost) {
+    return `${origin}/${cleanEndpoint}`;
   }
 
-  // 2. Fallback to automatic detection based on host
-  const isLocalhost = window.location.hostname === 'localhost';
-  const origin = window.location.origin;
-  
-  // If local XAMPP/Apache is running, it usually has the project in /Portfolio
-  const base = isLocalhost ? `${origin}/Portfolio` : origin;
-  const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+  // 3. Si es local, usar la variable de entorno configurada, o por defecto /Portfolio
+  const envUrl = import.meta.env.VITE_API_URL;
+  const base = envUrl ? (envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl) : `${origin}/Portfolio`;
   
   return `${base}/${cleanEndpoint}`;
 };
