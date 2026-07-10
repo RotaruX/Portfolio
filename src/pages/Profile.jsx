@@ -113,6 +113,10 @@ export const Profile = () => {
       if (descLower.includes('css')) badges.push('CSS');
       if (descLower.includes('react')) badges.push('React');
       if (descLower.includes('mysql')) badges.push('MySQL');
+      if (descLower.includes('java') && !descLower.includes('javascript')) badges.push('Java');
+      if (descLower.includes('spring')) badges.push('Spring Boot');
+      if (descLower.includes('docker')) badges.push('Docker');
+      if (descLower.includes('api') || descLower.includes('rest')) badges.push('API REST');
     }
     return badges;
   };

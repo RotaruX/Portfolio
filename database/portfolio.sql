@@ -7,11 +7,11 @@
 -- ============================================================
 
 -- Crear la base de datos con codificación UTF8MB4
-CREATE DATABASE IF NOT EXISTS `portfolio_db`
+CREATE DATABASE IF NOT EXISTS `qaqu742`
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE `portfolio_db`;
+USE `qaqu742`;
 
 -- ============================================================
 -- TABLA: admin_users
@@ -99,8 +99,8 @@ INSERT INTO `admin_users` (`username`, `password`) VALUES
 INSERT INTO `profile` (`full_name`, `title`, `bio`, `email`, `phone`, `location`, `github_url`, `linkedin_url`, `cv_url`, `profile_image`) VALUES
 (
   'Alexandru Adrian Rotaru Alergus',
-  'Desarrollador Web (Graduado en DAW)',
-  'Recién graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Soy un desarrollador apasionado por crear experiencias digitales excepcionales. Actualmente estoy estudiando más tecnologías y frameworks, y estoy dispuesto a aprender cualquier tipo de lenguaje. Mi stack principal incluye: HTML, CSS, JavaScript, PHP, MySQL, React, Node.js y Git.',
+  'Desarrollador Backend Java | Spring Boot',
+  'Desarrollador backend en formación con base sólida en Java y Spring Boot. Graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW) y con formación adicional en Sistemas de Telecomunicaciones e Informáticos. He desarrollado APIs REST con Spring Boot y Spring Security, gestionando persistencia con SQL y contenerización con Docker. Persona responsable, adaptable y con gran capacidad de aprendizaje. Busco incorporarme a una empresa, preferiblemente en remoto, para crecer como desarrollador Java aportando compromiso y ganas de asumir nuevos retos técnicos.',
   'rotarualex1612@gmail.com',
   '610211872',
   'Elche, Alicante',
@@ -140,31 +140,42 @@ INSERT INTO `projects` (`title`, `description`, `long_description`, `features`, 
   '2026-06-08 10:00:00'
 );
 
--- Habilidades técnicas (8 habilidades con niveles y clases de devicon)
+-- Habilidades técnicas (niveles reordenados para destacar stack Java backend)
 INSERT INTO `skills` (`name`, `category`, `level`, `icon_class`) VALUES
-('HTML',       'frontend', 95, 'devicon-html5-plain'),
-('CSS',        'frontend', 90, 'devicon-css3-plain'),
-('JavaScript', 'frontend', 88, 'devicon-javascript-plain'),
-('PHP',        'backend',  85, 'devicon-php-plain'),
-('MySQL',      'backend',  82, 'devicon-mysql-plain'),
-('React',      'frontend', 78, 'devicon-react-original'),
-('Git',        'tools',    90, 'devicon-git-plain'),
-('Node.js',    'backend',  75, 'devicon-nodejs-plain'),
-('Java',       'backend',  70, 'devicon-java-plain');
+('Java',            'backend',  90, 'devicon-java-plain'),
+('Spring Boot',     'backend',  85, 'devicon-spring-plain'),
+('Spring Security', 'backend',  80, 'devicon-spring-plain'),
+('MySQL',           'backend',  82, 'devicon-mysql-plain'),
+('Git',             'tools',    90, 'devicon-git-plain'),
+('Docker',          'tools',    70, 'devicon-docker-plain'),
+('JavaScript',      'frontend', 80, 'devicon-javascript-plain'),
+('PHP',             'backend',  78, 'devicon-php-plain'),
+('HTML',            'frontend', 85, 'devicon-html5-plain'),
+('CSS',             'frontend', 80, 'devicon-css3-plain'),
+('React',           'frontend', 70, 'devicon-react-original'),
+('Node.js',         'backend',  68, 'devicon-nodejs-plain'),
+('Angular',         'frontend', 60, 'devicon-angularjs-plain');
 
--- Experiencia laboral (datos reales)
+-- Experiencia laboral (datos reales del CV)
 INSERT INTO `experience` (`company`, `position`, `description`, `start_date`, `end_date`) VALUES
 (
   'Rechgo',
   'Desarrollador Web',
-  'Desarrollo y mantenimiento de sitios web con WordPress, además de trabajo directo con código PHP, JavaScript y CSS para personalizar funcionalidades y diseño.',
-  '2025-03-01',
-  '2025-06-30'
+  'Desarrollo y mantenimiento de páginas web con WordPress. Personalización de temas y plugins con PHP, HTML, CSS y JavaScript. Adaptación de diseños a dispositivos móviles (responsive design).',
+  '2026-03-01',
+  '2026-05-31'
 ),
 (
-  'Savour',
-  'Desarrollador WordPress',
-  'Gestión y desarrollo de contenido web mediante WordPress, enfocado en la creación y optimización de páginas para la empresa.',
-  '2025-06-01',
-  '2025-06-30'
+  'Insyte Instalaciones',
+  'Técnico de radio',
+  'Instalación y configuración de equipos. Trabajo técnico y resolución de problemas en infraestructura de telecomunicaciones.',
+  '2023-03-01',
+  '2024-07-31'
+),
+(
+  'Restauración',
+  'Atención al cliente',
+  'Trabajo en varios locales de restauración. Desarrollo de habilidades de atención al cliente, trabajo en equipo y gestión de tiempos.',
+  '2018-01-01',
+  NULL
 );

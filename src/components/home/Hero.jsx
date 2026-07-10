@@ -8,10 +8,10 @@ export const Hero = ({ name, shortBio, email, yearsExp }) => {
   const codeBlockRef = useRef(null);
 
   const typewriterStrings = [
-    'Desarrollador Web Full Stack',
-    'Desarrollador de Aplicaciones',
-    'Apasionado por la Tecnología',
-    'Creador de Experiencias Digitales'
+    'Desarrollador Backend Java',
+    'Spring Boot & Spring Security',
+    'APIs REST & Microservicios',
+    'En busca de nuevos retos'
   ];
 
   const typewriterText = useTypewriter(typewriterStrings);
@@ -69,13 +69,12 @@ export const Hero = ({ name, shortBio, email, yearsExp }) => {
             <span></span><span></span><span></span>
           </div>
           <div className="code-content">
-            <span className="code-comment">// sobre_mi.json</span><br />
-            <span className="code-bracket">{"{"}</span><br />
-            &nbsp;&nbsp;<span className="code-key">"nombre"</span>: <span className="code-string">"{name}"</span>,<br />
-            &nbsp;&nbsp;<span className="code-key">"rol"</span>: <span className="code-string">"Full Stack Developer"</span>,<br />
-            &nbsp;&nbsp;<span className="code-key">"experiencia"</span>: <span className="code-value">"{yearsExp}+ años"</span>,<br />
-            &nbsp;&nbsp;<span className="code-key">"pasión"</span>: <span className="code-string">"Crear soluciones digitales"</span>,<br />
-            &nbsp;&nbsp;<span className="code-key">"disponible"</span>: <span className="code-value">true</span><br />
+            <span className="code-comment">// BackendDev.java</span><br />
+            <span className="code-key">public class</span> <span className="code-string">BackendDev</span> <span className="code-bracket">{"{"}</span><br />
+            &nbsp;&nbsp;<span className="code-key">String</span> nombre = <span className="code-string">"{name}"</span>;<br />
+            &nbsp;&nbsp;<span className="code-key">String</span> stack = <span className="code-string">"Java · Spring Boot"</span>;<br />
+            &nbsp;&nbsp;<span className="code-key">int</span> experiencia = <span className="code-value">{yearsExp}</span>;<br />
+            &nbsp;&nbsp;<span className="code-key">boolean</span> disponible = <span className="code-value">true</span>;<br />
             <span className="code-bracket">{"}"}</span>
           </div>
         </div>

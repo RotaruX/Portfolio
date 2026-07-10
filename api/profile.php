@@ -10,8 +10,8 @@ try {
     if (!$profile) {
         $profile = [
             'full_name' => 'Alexandru Adrian Rotaru Alergus',
-            'title' => 'Desarrollador Web (Graduado en DAW)',
-            'bio' => 'Recién graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Soy un desarrollador apasionado por crear experiencias digitales excepcionales. Actualmente estoy estudiando más tecnologías y frameworks, y estoy dispuesto a aprender cualquier tipo de lenguaje. Mi stack principal incluye: HTML, CSS, JavaScript, PHP, MySQL, React, Node.js y Git.',
+            'title' => 'Desarrollador Backend Java | Spring Boot',
+            'bio' => 'Desarrollador backend en formación con base sólida en Java y Spring Boot. Graduado del Grado Superior en Desarrollo de Aplicaciones Web (DAW) y con formación adicional en Sistemas de Telecomunicaciones e Informáticos. He desarrollado APIs REST con Spring Boot y Spring Security, gestionando persistencia con SQL y contenerización con Docker. Persona responsable, adaptable y con gran capacidad de aprendizaje. Busco incorporarme a una empresa, preferiblemente en remoto, para crecer como desarrollador Java aportando compromiso y ganas de asumir nuevos retos técnicos.',
             'email' => 'rotarualex1612@gmail.com',
             'phone' => '610211872',
             'location' => 'Elche, Alicante',
@@ -22,12 +22,12 @@ try {
         ];
     }
 
-    // 2. Calcular años de experiencia
-    $stmt = $pdo->query("SELECT MIN(start_date) as first_date FROM experience");
+    // 2. Calcular años de experiencia (solo sector IT/desarrollo)
+    $stmt = $pdo->query("SELECT MIN(start_date) as first_date FROM experience WHERE position LIKE '%Desarrollador%' OR position LIKE '%Técnico%' OR position LIKE '%Programador%'");
     $exp = $stmt->fetch();
     $years_exp = $exp && $exp['first_date'] 
-        ? max(0, (int)floor((time() - strtotime($exp['first_date'])) / (365.25 * 24 * 3600)))
-        : 0;
+        ? max(1, (int)ceil((time() - strtotime($exp['first_date'])) / (365.25 * 24 * 3600)))
+        : 1;
 
     // 3. Contar proyectos totales
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM projects");

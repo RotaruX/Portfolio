@@ -20,7 +20,7 @@ export const Footer = () => {
               </div>
             </Link>
             <p className="footer-about-text">
-              Desarrollador web y de aplicaciones apasionado por crear soluciones digitales innovadoras y experiencias de usuario excepcionales.
+              Desarrollador backend Java con base sólida en Spring Boot y Spring Security. Apasionado por construir APIs robustas y soluciones escalables.
             </p>
           </div>
 
